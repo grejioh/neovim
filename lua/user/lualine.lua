@@ -12,8 +12,8 @@ local diagnostics = {
   sources = { "nvim_diagnostic" },
   sections = { "error", "warn" },
   symbols = { error = " ", warn = " " },
-  colored = false,
-  always_visible = true,
+  colored = true,
+  always_visible = false,
 }
 
 local diff = {
