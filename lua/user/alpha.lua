@@ -4,6 +4,7 @@ if not status_ok then
 end
 
 local dashboard = require "alpha.themes.dashboard"
+local fortune =  require "alpha.fortune"
 local function pick_color()
   local colors = { "String", "Identifier", "Keyword", "Number" }
   return colors[math.random(#colors)]
@@ -25,16 +26,9 @@ dashboard.section.buttons.val = {
   dashboard.button("c", " " .. " Config", ":e ~/.config/nvim/init.lua <CR>"),
   dashboard.button("q", " " .. " Quit", ":qa<CR>"),
 }
-local function footer()
-    local datetime = os.date(" %Y-%m-%d   %H:%M:%S")
-    local version = vim.version()
-    local nvim_version_info = "   v" .. version.major .. "." .. version.minor .. "." .. version.patch
-    return datetime ..  nvim_version_info
-  end
-dashboard.section.footer.val = footer()
-
+dashboard.section.footer.val = fortune()
 dashboard.section.footer.opts.hl = pick_color()
-dashboard.section.header.opts.hl = pick_color() 
+dashboard.section.header.opts.hl = pick_color()
 dashboard.section.buttons.opts.hl = pick_color()
 
 dashboard.opts.opts.noautocmd = true
