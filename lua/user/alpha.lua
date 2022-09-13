@@ -4,6 +4,10 @@ if not status_ok then
 end
 
 local dashboard = require "alpha.themes.dashboard"
+local function pick_color()
+  local colors = { "String", "Identifier", "Keyword", "Number" }
+  return colors[math.random(#colors)]
+end
 dashboard.section.header.val = {
   [[                               __                ]],
   [[  ___     ___    ___   __  __ /\_\    ___ ___    ]],
@@ -22,14 +26,16 @@ dashboard.section.buttons.val = {
   dashboard.button("q", " " .. " Quit", ":qa<CR>"),
 }
 local function footer()
-  return "chrisatmachine.com"
-end
-
+    local datetime = os.date(" %Y-%m-%d   %H:%M:%S")
+    local version = vim.version()
+    local nvim_version_info = "   v" .. version.major .. "." .. version.minor .. "." .. version.patch
+    return datetime ..  nvim_version_info
+  end
 dashboard.section.footer.val = footer()
 
-dashboard.section.footer.opts.hl = "Type"
-dashboard.section.header.opts.hl = "Include"
-dashboard.section.buttons.opts.hl = "Keyword"
+dashboard.section.footer.opts.hl = pick_color()
+dashboard.section.header.opts.hl = pick_color() 
+dashboard.section.buttons.opts.hl = pick_color()
 
 dashboard.opts.opts.noautocmd = true
 alpha.setup(dashboard.opts)
