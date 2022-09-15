@@ -52,6 +52,7 @@ M.setup = function()
 end
 
 local function lsp_keymaps(bufnr)
+  -- [TODO] keymap->vim.keymap.set see: https://github.com/neovim/nvim-lspconfig#suggested-configuration
   local opts = { noremap = true, silent = true }
   local keymap = vim.api.nvim_buf_set_keymap
   keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
